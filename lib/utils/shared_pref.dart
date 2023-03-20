@@ -13,9 +13,7 @@ class AppPreferences {
     _prefs = await SharedPreferences.getInstance();
   }
 
-  Future<bool> getBool(
-    String key,
-  ) async {
+  Future<bool> getBool(String key) async {
     return _prefs.getBool(key) ?? false;
   }
 
