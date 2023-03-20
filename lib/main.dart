@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_boilerplate_mvvm_pattern/utils/shared_pref.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final prefs = AppPreferences();
+  await prefs.init();
   runApp(const MyApp());
 }
 
@@ -50,7 +54,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
-  void _incrementCounter() {
+  void _incrementCounter() async {
     setState(() {
       // This call to setState tells the Flutter framework that something has
       // changed in this State, which causes it to rerun the build method below
