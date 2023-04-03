@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate_mvvm_pattern/core/models/user.dart';
 import 'package:flutter_boilerplate_mvvm_pattern/core/services/user_service.dart';
+import 'package:flutter_boilerplate_mvvm_pattern/utils/service_locator.dart';
 
 class UserViewModel extends ChangeNotifier {
   List<User> _users = [];
-  final UserService _userService = UserService();
+  final UserService _userService = locator<UserService>();
 
   List<User> get users => _users;
 
