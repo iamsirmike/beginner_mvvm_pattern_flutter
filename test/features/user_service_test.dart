@@ -18,7 +18,7 @@ void main() {
   group('fetch user bonds: ', () {
     test('return purchased bonds when the request completes successfully',
         () async {
-      final mockRepo = UserService(apiService: apiService);
+      final mockRepo = UserServiceImpl(apiService: apiService);
       String url = '/users';
 
       when(() => apiService.get('/users')).thenAnswer(

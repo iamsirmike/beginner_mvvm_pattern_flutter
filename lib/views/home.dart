@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_boilerplate_mvvm_pattern/core/models/user.dart';
 import 'package:flutter_boilerplate_mvvm_pattern/core/viewmodels/user_view_model.dart';
 import 'package:flutter_boilerplate_mvvm_pattern/utils/operation_runner.dart';
 import 'package:provider/provider.dart';
@@ -13,7 +14,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends OperationRunnerState<MyHomePage> {
-  int _counter = 0;
+  final int _counter = 0;
   late UserViewModel _userViewModel;
 
   @override
@@ -34,7 +35,7 @@ class _MyHomePageState extends OperationRunnerState<MyHomePage> {
             ),
             Text(
               '$_counter',
-              style: Theme.of(context).textTheme.headline4,
+              style: Theme.of(context).textTheme.headlineMedium,
             ),
           ],
         ),
@@ -50,17 +51,14 @@ class _MyHomePageState extends OperationRunnerState<MyHomePage> {
   void _incrementCounter() async {
     const operation = 'increment counter';
 
-    final result = await runOperation<int>(
+    final result = await runOperation<User?>(
       operation,
       () async {
-        setState(() {
-          _counter++;
-        });
-        return _counter;
+        return await _userViewModel.fetchUser();
       },
     );
 
-    print(result);
+    print("===> hey $result");
     //Do whatever you want with the response. eg: You can navigate user to a new page.
   }
 }

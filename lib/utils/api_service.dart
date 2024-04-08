@@ -3,12 +3,12 @@ import 'package:flutter/foundation.dart';
 
 class ApiService {
   BaseOptions baseOptions = BaseOptions(
-    baseUrl: 'https://myapi/v1',
+    baseUrl: 'https://randomuser.me',
     connectTimeout: const Duration(seconds: 30),
     receiveTimeout: const Duration(seconds: 30),
   );
 
-  Future<dynamic> get(String url, {Map<String, dynamic>? queryParams}) async {
+  Future<Response> get(String url, {Map<String, dynamic>? queryParams}) async {
     try {
       final response = await Dio(baseOptions).get(
         url,
@@ -17,13 +17,13 @@ class ApiService {
       if (kDebugMode) {
         print('GET $url: ${response.statusCode} ${response.data}');
       }
-      return response.data;
+      return response;
     } on DioError catch (e) {
       throw _handleError(e);
     }
   }
 
-  Future<dynamic> post(String url, {Map<String, dynamic>? data}) async {
+  Future<Response> post(String url, {Map<String, dynamic>? data}) async {
     try {
       final response = await Dio(baseOptions).post(
         url,
@@ -32,13 +32,13 @@ class ApiService {
       if (kDebugMode) {
         print('POST $url: ${response.statusCode} ${response.data}');
       }
-      return response.data;
+      return response;
     } on DioError catch (e) {
       throw _handleError(e);
     }
   }
 
-  Future<dynamic> put(String url, {Map<String, dynamic>? data}) async {
+  Future<Response> put(String url, {Map<String, dynamic>? data}) async {
     try {
       final response = await Dio(baseOptions).put(
         url,
@@ -47,13 +47,13 @@ class ApiService {
       if (kDebugMode) {
         print('PUT $url: ${response.statusCode} ${response.data}');
       }
-      return response.data;
+      return response;
     } on DioError catch (e) {
       throw _handleError(e);
     }
   }
 
-  Future<dynamic> delete(String url,
+  Future<Response> delete(String url,
       {Map<String, dynamic>? queryParams}) async {
     try {
       final response = await Dio(baseOptions).delete(
@@ -63,7 +63,7 @@ class ApiService {
       if (kDebugMode) {
         print('DELETE $url: ${response.statusCode} ${response.data}');
       }
-      return response.data;
+      return response;
     } on DioError catch (e) {
       throw _handleError(e);
     }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate_mvvm_pattern/app.dart';
-import 'package:flutter_boilerplate_mvvm_pattern/utils/service_locator.dart';
+import 'package:flutter_boilerplate_mvvm_pattern/utils/injection_container.dart';
 import 'package:flutter_boilerplate_mvvm_pattern/utils/shared_pref.dart';
 
 void main() async {
@@ -8,8 +8,12 @@ void main() async {
 
   WidgetsFlutterBinding.ensureInitialized();
 
-  final prefs = AppPreferences();
-  await prefs.init();
+  initAppConfig();
 
   runApp(const MyApp());
+}
+
+Future<void> initAppConfig() async {
+  final prefs = AppPreferences();
+  await prefs.init();
 }
